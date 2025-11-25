@@ -1,0 +1,418 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-robot"></i>
+                <span>AI-Powered Learning</span>
+            </div>
+            <h1 class="hero-title">
+                Master <span class="gradient-text">Physics</span> with 
+                <span class="gradient-text">AI Intelligence</span>
+            </h1>
+            <p class="hero-description">
+                PhyChat combines Retrieval Augmented Generation (RAG) with Large Language Models 
+                to deliver personalized physics education. Ask questions, solve problems, and 
+                understand complex concepts with our intelligent AI assistant.
+            </p>
+            <div class="hero-actions">
+                <a href="{{ url_for('chat') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-comments"></i>
+                    <span>Start Learning</span>
+                </a>
+                <a href="{{ url_for('features') }}" class="btn btn-outline btn-lg">
+                    <i class="fas fa-play-circle"></i>
+                    <span>See How It Works</span>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="1000">0</span>+
+                    <span class="stat-label">Physics Topics</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="98">0</span>%
+                    <span class="stat-label">Accuracy Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="24">0</span>/7
+                    <span class="stat-label">Available</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-image-wrapper">
+                <div class="floating-card card-1">
+                    <i class="fas fa-brain"></i>
+                    <span>AI Powered</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-bolt"></i>
+                    <span>Instant Answers</span>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-book-open"></i>
+                    <span>Learn Physics</span>
+                </div>
+                <div class="hero-circle">
+                    <div class="orbit orbit-1">
+                        <div class="electron"></div>
+                    </div>
+                    <div class="orbit orbit-2">
+                        <div class="electron"></div>
+                    </div>
+                    <div class="orbit orbit-3">
+                        <div class="electron"></div>
+                    </div>
+                    <div class="nucleus">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-wave">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V120Z" fill="var(--bg-secondary)"/>
+        </svg>
+    </div>
+</section>
+
+<!-- Features Overview Section -->
+<section class="features-overview section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Features</span>
+            <h2 class="section-title">Why Choose <span class="gradient-text">PhyChat</span>?</h2>
+            <p class="section-description">
+                Our AI-powered platform revolutionizes how you learn physics with cutting-edge technology
+            </p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3 class="feature-title">RAG Technology</h3>
+                <p class="feature-description">
+                    Retrieval Augmented Generation ensures accurate, context-aware responses 
+                    by combining knowledge retrieval with language generation.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h3 class="feature-title">LLM Integration</h3>
+                <p class="feature-description">
+                    Powered by state-of-the-art Large Language Models for natural, 
+                    human-like conversations about physics concepts.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="feature-title">Personalized Learning</h3>
+                <p class="feature-description">
+                    Adaptive responses tailored to your learning level, from basics 
+                    to advanced quantum mechanics and beyond.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="feature-title">24/7 Availability</h3>
+                <p class="feature-description">
+                    Access your physics tutor anytime, anywhere. No appointments 
+                    needed - just ask and learn instantly.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h3 class="feature-title">Problem Solving</h3>
+                <p class="feature-description">
+                    Step-by-step solutions to physics problems with detailed 
+                    explanations and mathematical derivations.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="feature-title">Progress Tracking</h3>
+                <p class="feature-description">
+                    Monitor your learning journey with insights on topics covered 
+                    and areas for improvement.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Process</span>
+            <h2 class="section-title">How <span class="gradient-text">PhyChat</span> Works</h2>
+            <p class="section-description">
+                Understanding the technology behind your AI physics assistant
+            </p>
+        </div>
+        
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h3 class="step-title">Ask Your Question</h3>
+                    <p class="step-description">
+                        Type your physics question in natural language. Whether it's about 
+                        Newton's laws, quantum physics, or thermodynamics.
+                    </p>
+                </div>
+                <div class="step-icon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h3 class="step-title">Knowledge Retrieval</h3>
+                    <p class="step-description">
+                        Our RAG system searches through curated physics knowledge bases 
+                        to find the most relevant information.
+                    </p>
+                </div>
+                <div class="step-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h3 class="step-title">AI Processing</h3>
+                    <p class="step-description">
+                        The LLM processes retrieved knowledge and generates a coherent, 
+                        accurate response tailored to your query.
+                    </p>
+                </div>
+                <div class="step-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <div class="step-content">
+                    <h3 class="step-title">Get Your Answer</h3>
+                    <p class="step-description">
+                        Receive detailed explanations, formulas, and examples 
+                        to help you understand the concept completely.
+                    </p>
+                </div>
+                <div class="step-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Topics Section -->
+<section class="topics-section section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Topics</span>
+            <h2 class="section-title">Physics Topics We <span class="gradient-text">Cover</span></h2>
+            <p class="section-description">
+                From classical mechanics to modern physics, we've got you covered
+            </p>
+        </div>
+        
+        <div class="topics-grid">
+            <div class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h4>Classical Mechanics</h4>
+                <p>Motion, Forces, Energy</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h4>Electromagnetism</h4>
+                <p>Electric & Magnetic Fields</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-temperature-high"></i>
+                </div>
+                <h4>Thermodynamics</h4>
+                <p>Heat, Energy, Entropy</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-wave-square"></i>
+                </div>
+                <h4>Waves & Optics</h4>
+                <p>Light, Sound, Waves</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <h4>Quantum Physics</h4>
+                <p>Quantum Mechanics</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h4>Relativity</h4>
+                <p>Special & General</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-radiation"></i>
+                </div>
+                <h4>Nuclear Physics</h4>
+                <p>Atomic Structure</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h4>Astrophysics</h4>
+                <p>Cosmology, Stars</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section section">
+    <div class="container">
+        <div class="cta-card">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Master Physics?</h2>
+                <p class="cta-description">
+                    Start your AI-powered learning journey today. No sign-up required - 
+                    just ask and learn!
+                </p>
+                <a href="{{ url_for('chat') }}" class="btn btn-white btn-lg">
+                    <i class="fas fa-rocket"></i>
+                    <span>Start Chatting Now</span>
+                </a>
+            </div>
+            <div class="cta-visual">
+                <div class="cta-orbit">
+                    <i class="fas fa-atom fa-spin"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Testimonials</span>
+            <h2 class="section-title">What Students <span class="gradient-text">Say</span></h2>
+            <p class="section-description">
+                Hear from students who transformed their physics learning with PhyChat
+            </p>
+        </div>
+        
+        <div class="testimonials-slider">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "PhyChat helped me understand quantum mechanics concepts that I struggled 
+                        with for months. The explanations are clear and the examples are perfect!"
+                    </p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="author-info">
+                        <h5>Sarah Johnson</h5>
+                        <span>Physics Student</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "The step-by-step problem solving feature is incredible. It's like having 
+                        a personal tutor available 24/7. Highly recommended!"
+                    </p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="author-info">
+                        <h5>Michael Chen</h5>
+                        <span>Engineering Student</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "As a teacher, I recommend PhyChat to all my students. The RAG technology 
+                        ensures accurate information while keeping explanations engaging."
+                    </p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="author-info">
+                        <h5>Dr. Emily Watson</h5>
+                        <span>Physics Professor</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

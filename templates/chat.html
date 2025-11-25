@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block title %}Chat{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="chat-section">
+    <div class="chat-container">
+        <!-- Chat Sidebar -->
+        <aside class="chat-sidebar" id="chat-sidebar">
+            <div class="sidebar-header">
+                <h3>
+                    <i class="fas fa-history"></i>
+                    Chat History
+                </h3>
+                <button class="btn-icon new-chat-btn" id="new-chat-btn" aria-label="New Chat">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-search">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search conversations..." id="search-chats">
+                </div>
+            </div>
+            
+            <div class="chat-history" id="chat-history">
+                <div class="history-group">
+                    <span class="group-label">Today</span>
+                    <div class="history-item active">
+                        <i class="fas fa-message"></i>
+                        <span class="history-title">New Conversation</span>
+                        <button class="btn-icon delete-chat" aria-label="Delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- More history items will be added dynamically -->
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="quick-topics">
+                    <span class="topics-label">Quick Topics</span>
+                    <div class="topic-chips">
+                        <button class="topic-chip" data-topic="mechanics">
+                            <i class="fas fa-car"></i> Mechanics
+                        </button>
+                        <button class="topic-chip" data-topic="electromagnetism">
+                            <i class="fas fa-bolt"></i> E&M
+                        </button>
+                        <button class="topic-chip" data-topic="quantum">
+                            <i class="fas fa-atom"></i> Quantum
+                        </button>
+                        <button class="topic-chip" data-topic="thermodynamics">
+                            <i class="fas fa-fire"></i> Thermo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <div class="chat-main">
+            <!-- Chat Header -->
+            <header class="chat-header">
+                <button class="btn-icon sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="chat-info">
+                    <div class="ai-avatar">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="ai-details">
+                        <h4>PhyChat AI</h4>
+                        <span class="status online">
+                            <span class="status-dot"></span>
+                            Online
+                        </span>
+                    </div>
+                </div>
+                <div class="chat-actions">
+                    <button class="btn-icon" id="clear-chat" aria-label="Clear chat">
+                        <i class="fas fa-broom"></i>
+                    </button>
+                    <button class="btn-icon" id="export-chat" aria-label="Export chat">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button class="btn-icon" id="chat-settings" aria-label="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Chat Messages Area -->
+            <div class="chat-messages" id="chat-messages">
+                <!-- Welcome Message -->
+                <div class="welcome-message" id="welcome-message">
+                    <div class="welcome-icon">
+                        <i class="fas fa-atom fa-spin-slow"></i>
+                    </div>
+                    <h2>Welcome to PhyChat!</h2>
+                    <p>I'm your AI physics assistant powered by RAG and LLM technology. Ask me anything about physics - from basic concepts to advanced theories!</p>
+                    
+                    <div class="suggestion-cards">
+                        <button class="suggestion-card" data-question="Explain Newton's laws of motion">
+                            <i class="fas fa-rocket"></i>
+                            <span>Explain Newton's laws of motion</span>
+                        </button>
+                        <button class="suggestion-card" data-question="What is quantum entanglement?">
+                            <i class="fas fa-link"></i>
+                            <span>What is quantum entanglement?</span>
+                        </button>
+                        <button class="suggestion-card" data-question="How does special relativity work?">
+                            <i class="fas fa-hourglass-half"></i>
+                            <span>How does special relativity work?</span>
+                        </button>
+                        <button class="suggestion-card" data-question="Derive the equation E=mc²">
+                            <i class="fas fa-infinity"></i>
+                            <span>Derive the equation E=mc²</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Messages will be dynamically added here -->
+            </div>
+
+            <!-- Typing Indicator -->
+            <div class="typing-indicator" id="typing-indicator" style="display: none;">
+                <div class="ai-avatar small">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span class="typing-text">PhyChat is thinking...</span>
+            </div>
+
+            <!-- Chat Input Area -->
+            <div class="chat-input-area">
+                <div class="input-container">
+                    <div class="input-actions-left">
+                        <button class="btn-icon" id="attach-file" aria-label="Attach file">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <textarea 
+                            id="message-input" 
+                            placeholder="Ask anything about physics..." 
+                            rows="1"
+                            maxlength="2000"
+                        ></textarea>
+                        <span class="char-count" id="char-count">0/2000</span>
+                    </div>
+                    
+                    <div class="input-actions-right">
+                        <button class="btn-icon" id="voice-input" aria-label="Voice input">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button class="btn btn-primary send-btn" id="send-btn" disabled>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="input-footer">
+                    <span class="disclaimer">
+                        <i class="fas fa-info-circle"></i>
+                        PhyChat uses AI to generate responses. Please verify critical information.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Settings Modal -->
+<div class="modal" id="settings-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-cog"></i> Chat Settings</h3>
+            <button class="btn-icon modal-close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="setting-group">
+                <label class="setting-label">Response Style</label>
+                <div class="setting-options">
+                    <button class="setting-option active" data-style="detailed">
+                        <i class="fas fa-file-alt"></i>
+                        Detailed
+                    </button>
+                    <button class="setting-option" data-style="concise">
+                        <i class="fas fa-compress-alt"></i>
+                        Concise
+                    </button>
+                    <button class="setting-option" data-style="educational">
+                        <i class="fas fa-graduation-cap"></i>
+                        Educational
+                    </button>
+                </div>
+            </div>
+            
+            <div class="setting-group">
+                <label class="setting-label">Difficulty Level</label>
+                <div class="setting-slider">
+                    <input type="range" min="1" max="5" value="3" id="difficulty-slider">
+                    <div class="slider-labels">
+                        <span>Beginner</span>
+                        <span>Advanced</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="setting-group">
+                <label class="setting-label">Include Math Equations</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="math-toggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            
+            <div class="setting-group">
+                <label class="setting-label">Include Examples</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="examples-toggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" id="reset-settings">Reset to Default</button>
+            <button class="btn btn-primary" id="save-settings">Save Settings</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}
